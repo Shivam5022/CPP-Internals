@@ -5,4 +5,8 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_executable(CPP_Internals main.cpp
         includes/unique_pointer.hpp
-        includes/shared_pointer.hpp)
+        includes/shared_pointer.hpp
+        includes/vector.hpp
+        includes/hashmap.hpp
+        includes/thread_pool.hpp
+        includes/timer.hpp)

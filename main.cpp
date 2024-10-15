@@ -2,6 +2,8 @@
 #include <string>
 #include "includes/unique_pointer.hpp"
 #include "includes/shared_pointer.hpp"
+#include "includes/thread_pool.hpp"
+#include "includes/timer.hpp"
 
 struct A {
     int mId;
@@ -32,9 +34,27 @@ void testSharedPtr() {
     shared_pointer<A> ptr4 = ptr;
 }
 
+void testThreadPool(const int numThreads) {
+    constexpr int iterations = 10;
+    thread_pool tp(numThreads);
+
+    auto testFunction = [](const int a, const int b, const int c = 0) {
+        std::cout << "The sum is : " << a + b + c << '\n';
+        return a + b + c;
+    };
+    const int height = 11, weight = 12;
+
+    Timer timer;
+    for (int i = 0; i < iterations; i++) {
+        tp.execute(testFunction, height, weight);
+    }
+}
+
 int main() {
     std::cout << "Hello, World!" << std::endl;
     // testUniquePtr();
-    testSharedPtr();
+    // testSharedPtr();
+    testThreadPool(5);
     return 0;
+
 }
