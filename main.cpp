@@ -4,6 +4,7 @@
 #include "includes/shared_pointer.hpp"
 #include "includes/thread_pool.hpp"
 #include "includes/timer.hpp"
+#include "includes/hashmap.hpp"
 
 struct A {
     int mId;
@@ -54,7 +55,7 @@ int main() {
     std::cout << "Hello, World!" << std::endl;
     // testUniquePtr();
     // testSharedPtr();
-    testThreadPool(5);
+    // testThreadPool(5);
     return 0;
 
 }
