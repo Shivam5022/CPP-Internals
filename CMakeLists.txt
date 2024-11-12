@@ -10,4 +10,5 @@ add_executable(CPP_Internals main.cpp
         includes/hashmap.hpp
         includes/thread_pool.hpp
         includes/timer.hpp
-        includes/LRU_cache.hpp)
+        includes/LRU_cache.hpp
+        includes/memory_pool.hpp)
