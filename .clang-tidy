@@ -1,0 +1,42 @@
+---
+Checks: >
+  -*,
+  modernize-*,
+  readability-*,
+  performance-*,
+  bugprone-*,
+  cert-*,
+  clang-analyzer-*,
+  cppcoreguidelines-*
+
+CheckOptions:
+  - key: readability-identifier-naming.ClassCase
+    value: CamelCase
+  - key: readability-identifier-naming.StructCase
+    value: CamelCase
+  - key: readability-identifier-naming.FunctionCase
+    value: camelBack
+  - key: readability-identifier-naming.VariableCase
+    value: camelBack
+  - key: readability-identifier-naming.MemberCase
+    value: camelBack
+  - key: readability-identifier-naming.ConstexprVariableCase
+    value: CamelCase
+  - key: modernize-use-nodiscard.Replacement
+    value: "[[nodiscard]]"
+  - key: modernize-pass-by-value.WarnLevel
+    value: 1 # Only warn for non-trivial types
+  - key: cppcoreguidelines-pro-type-member-init.IgnoreArrays
+    value: "false"
+  - key: cppcoreguidelines-avoid-magic-numbers.IgnoredFloatingPointValues
+    value: "0.0;0.5;1.0;2.0;100.0"
+  - key: readability-magic-numbers.IgnoredFloatingPointValues
+    value: "0.0;0.5;1.0;2.0;100.0"
+
+WarningsAsErrors: "*"
+HeaderFilterRegex: ""
+FormatStyle: file # Use .clang-format if available
+---
+# Optional: Add project-specific suppressions
+# Suppress: cppcoreguidelines-pro-type-vararg
+# Suppress: modernize-avoid-c-arrays

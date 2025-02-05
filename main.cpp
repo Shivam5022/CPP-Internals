@@ -35,13 +35,14 @@ void testSharedPtr() {
 
 void testThreadPool(const int numThreads) {
   constexpr int iterations = 10;
-  thread_pool tp(numThreads);
+  ThreadPool tp(numThreads);
 
   auto testFunction = [](const int a, const int b, const int c = 0) {
     std::cout << "The sum is : " << a + b + c << '\n';
     return a + b + c;
   };
-  const int height = 11, weight = 12;
+  const int height = 11;
+  const int weight = 12;
 
   Timer timer;
   for (int i = 0; i < iterations; i++) {
@@ -58,8 +59,9 @@ int minMax(const int bar, const int count, std::string s) {
   return *std::min_element(v.begin(), v.end());
 }
 
-int main() {
-  std::cout << "Hello, World!" << std::endl;
+auto main() -> int {
+  std::cout << "Hello, World!" << '\n';
   testUniquePtr();
+  int hello = 0;
   return 0;
 }
