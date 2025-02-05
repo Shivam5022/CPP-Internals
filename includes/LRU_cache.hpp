@@ -11,26 +11,26 @@ public:
     explicit LRUCache(int capacity) : mCapacity(capacity) {}
 
     ValueType get(const KeyType& key) {
-        if (mCacheMap.find(key) != mCacheMap.end()) {
+        if (mKeyToList.contains(key)) {
             // moved it to front of list (the iterator stays valid, hence don't update map)
-            mCacheList.splice(mCacheMap.begin(), mCacheList, mCacheMap[key]);
-            return mCacheMap[key]->second;
+            mCache.splice(mKeyToList.begin(), mCache, mKeyToList[key]);
+            return mKeyToList[key]->second;
         }
         return ValueType();
     }
 
     void put(const KeyType& key, const ValueType& value) {
-        if (mCacheMap.find(key) = mCacheMap.end()) {
-            mCacheMap[key]->second = value;
-            mCacheList.splice(mCacheMap.begin(), mCacheList, mCacheMap[key]);
+        if (mKeyToList.contains(key)) {
+            mKeyToList[key]->second = value;
+            mCache.splice(mKeyToList.begin(), mCache, mKeyToList[key]);
         } else {
-            if (mCacheMap.size() == mCapacity) {
-                KeyType KeyLeastRecentlyUsed = mCacheList.back().first;
-                mCacheMap.erase(KeyLeastRecentlyUsed);
-                mCacheList.pop_back();
+            if (mKeyToList.size() == mCapacity) {
+                KeyType KeyLeastRecentlyUsed = mCache.back().first;
+                mKeyToList.erase(KeyLeastRecentlyUsed);
+                mCache.pop_back();
             }
-            mCacheList.emplace_front(key, value); // adding to front of list
-            mCacheMap[key] = mCacheList.begin();
+            mCache.emplace_front(key, value); // adding to front of list
+            mKeyToList[key] = mCache.begin();
         }
     }
 
@@ -38,6 +38,6 @@ private:
     using CacheType = std::list<std::pair<KeyType, ValueType>>;
     using Iterator = typename std::list<std::pair<KeyType, ValueType>>::iterator;
     int mCapacity;
-    CacheType mCacheList;
-    std::unordered_map<KeyType, Iterator> mCacheMap;
+    CacheType mCache;
+    std::unordered_map<KeyType, Iterator> mKeyToList;
 };

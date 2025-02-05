@@ -4,10 +4,8 @@
 
 #pragma once
 
-#include <vector>
 #include <thread>
-#include <functional>
-#include <queue>
+#include <vector>
 
 class thread_pool {
 public:
